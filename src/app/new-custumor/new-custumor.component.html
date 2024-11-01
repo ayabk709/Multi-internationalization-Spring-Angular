@@ -1,29 +1,29 @@
 <div class="container">
   <div class="card col-md-6 offset-3 mt-2">
-    <div class="card-header">New Customer</div>
+    <div class="card-header">{{ 'customers.new.title' | translate }}</div> <!-- Translated Title -->
     <div class="card-body">
       <form [formGroup]="newCustumorForm" (ngSubmit)="Handlesavecust()">
         <div class="mb-3">
-          <label class="form-label">Name:</label>
-          <input type="text" formControlName="name" class="form-control">
+          <label class="form-label">{{ 'customers.form.name' | translate }}</label> <!-- Translated Label -->
+          <input type="text" formControlName="name" class="form-control" placeholder="{{ 'customers.form.name' | translate }}"> <!-- Placeholder added -->
           <span class="text-danger"
                 *ngIf="newCustumorForm.controls['name'].touched
-                && newCustumorForm.controls['name'].errors
-                && newCustumorForm.controls['name'].errors!['required']">
-            Name is Required
+                && newCustumorForm.controls['name'].errors?.['required']">
+            {{ 'customers.form.name.required' | translate }} <!-- Translated Error Message -->
           </span>
         </div>
         <div class="mb-3">
-          <label class="form-label">Email:</label>
-          <input type="text" formControlName="email" class="form-control">
+          <label class="form-label">{{ 'customers.form.email' | translate }}</label> <!-- Translated Label -->
+          <input type="email" formControlName="email" class="form-control" placeholder="{{ 'customers.form.email' | translate }}"> <!-- Placeholder added -->
           <span class="text-danger"
                 *ngIf="newCustumorForm.controls['email'].touched
-                && newCustumorForm.controls['email'].errors
-                && newCustumorForm.controls['email'].errors!['email']">
-            Email is not valid
+                && newCustumorForm.controls['email'].errors?.['email']">
+            {{ 'customers.form.email.invalid' | translate }} <!-- Translated Error Message -->
           </span>
         </div>
-        <button [disabled]="!newCustumorForm.valid" class="btn btn-info">Save</button>
+        <button [disabled]="!newCustumorForm.valid" class="btn btn-info">
+          {{ 'customers.form.save' | translate }} <!-- Translated Button Text -->
+        </button>
       </form>
     </div>
   </div>

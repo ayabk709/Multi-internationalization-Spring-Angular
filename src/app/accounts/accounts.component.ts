@@ -33,12 +33,13 @@ export class AccountsComponent implements OnInit {
     })}
 
   handleSearchAccount() {
-    let accountId : string =this.accountFormGroup.value.accountId;
-    this.accountObservable=this.accountService.getAccount(accountId,this.currentPage, this.pageSize).pipe(
-
+    let accountId: string = this.accountFormGroup.value.accountId;
+    this.accountObservable = this.accountService.getAccount(accountId, this.currentPage, this.pageSize).pipe(
       catchError(err => {
-        this.errorMessage=err.message;
-        return throwError(err);
+        // Set a user-friendly error message key instead of the raw error message
+        this.errorMessage = 'error.form.message'; // This will be translated later
+        console.error('Error occurred:', err); // Log the error for debugging
+        return throwError(err); // Rethrow the error for further handling if needed
       })
     );
   }
@@ -68,6 +69,7 @@ export class AccountsComponent implements OnInit {
     } else if(operationType=='CREDIT'){
       this.accountService.credit(accountId, amount,description).subscribe({
         next : (data)=>{
+
           console.log('Credit operation successful:', data);
           alert("Success credit");
           this.operationFromGroup.reset();

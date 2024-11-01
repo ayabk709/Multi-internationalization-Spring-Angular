@@ -19,27 +19,37 @@
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item" routerLink="/admin/custumors">Search Custumors</a></li>
-            <li *ngIf="authService.roles.includes('ADMIN')"><a class="dropdown-item" routerLink="/admin/new-Custumor">New Custumors</a></li>
-              </ul>
+            <li *ngIf="authService.roles.includes('ADMIN')">
+              <a class="dropdown-item" routerLink="/admin/new-Custumor">New Custumors</a>
+            </li>
+          </ul>
         </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-        </li>
-      </ul>
-      <ul class="navbar" *ngIf="authService.isAuthenticated==true">
-        <li class="nav-item " >
-         <a class="nav-link active" style="color: aliceblue">
-           {{ this.authService.username}}
-         </a>
 
+      </ul>
+
+      <!-- Language dropdown with spacing -->
+      <div class="dropdown "> <!-- Adjusted margin-start for spacing -->
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+          Language
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="languageDropdown">
+          <li><a class="dropdown-item" (click)="changeLanguage('en')">English</a></li>
+          <li><a class="dropdown-item" (click)="changeLanguage('fr')">French</a></li>
+          <li><a class="dropdown-item" (click)="changeLanguage('es')">Spanish</a></li>
+        </ul>
+      </div>
+
+
+      <ul class="navbar" *ngIf="authService.isAuthenticated == true">
+        <li class="nav-item me-3"> <!-- Added margin-end for spacing -->
+          <a class="nav-link active" style="color: aliceblue">
+            {{ this.authService.username }}
+          </a>
         </li>
         <li>
-          <button (click)="handleLogout()" class="btn btn-success">
-Logout
-          </button>
+          <button (click)="handleLogout()" class="btn btn-success">Logout</button>
         </li>
       </ul>
-
     </div>
   </div>
 </nav>

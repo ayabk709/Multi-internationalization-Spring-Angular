@@ -41,12 +41,10 @@ export class AuthService {
   }
 
   loadJwtTokenFromLocalStorage() {
-    let token= window.localStorage.getItem('access_token');
-    if(token){
-    this.loadProfile({ 'access-token': token });
-    this.router.navigateByUrl('/admin/custumors');
-    }
-
-
-  }
-}
+    if (typeof window !== 'undefined') {
+      let token = window.localStorage.getItem('access_token');
+      if (token) {
+        this.loadProfile({'access-token': token});
+        this.router.navigateByUrl('/admin/custumors');
+      }
+    }}}

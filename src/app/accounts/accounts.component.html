@@ -2,39 +2,43 @@
   <div class="row">
     <div class="col col-md-6">
       <div class="card">
-        <div class="card-header">Accounts</div>
+        <div class="card-header">{{ 'accounts.title' | translate }}</div>
         <div class="card-body">
           <form [formGroup]="accountFormGroup" (ngSubmit)="handleSearchAccount()">
             <div class="input-group">
-              <label class="input-group-text">Account Id :</label>
+              <label class="input-group-text">{{ 'accounts.accountId' | translate }} :</label>
               <input type="text" formControlName="accountId" class="form-control">
               <button class="btn btn-info" [disabled]="accountFormGroup.invalid">
                 <i class="bi bi-search"></i>
-                Search
+                {{ 'actions.search' | translate }}
               </button>
             </div>
           </form>
           <ng-template #errorTemplate>
             <ng-container *ngIf="errorMessage; else loading">
-              <div class="text-danger">{{ errorMessage }}</div>
+              <div class="text-danger">{{ errorMessage | translate }}</div>
             </ng-container>
             <ng-template #loading>
-              Loading ...
+              {{ 'loading.message' | translate }} ...
             </ng-template>
           </ng-template>
+
           <ng-container *ngIf="accountObservable | async as accountDetails;else errorTemplate">
             <div class="mb-2">
-              <label>Account ID :</label>
+              <label>{{ 'accounts.accountId' | translate }} :</label>
               <label><strong>{{ accountDetails.accountId }}</strong></label>
             </div>
             <div class="mb-2">
-              <label>Balance :</label>
+              <label>{{ 'accounts.balance' | translate }} :</label>
               <label><strong>{{ accountDetails.balance | number: '1.2-2' }}</strong></label>
             </div>
             <table class="table">
               <thead>
               <tr>
-                <th>ID</th><th>Date</th><th>Type</th><th>Amount</th>
+                <th>{{ 'accounts.table.id' | translate }}</th>
+                <th>{{ 'accounts.table.date' | translate }}</th>
+                <th>{{ 'accounts.table.type' | translate }}</th>
+                <th>{{ 'operations.amount' | translate }}</th>
               </tr>
               </thead>
               <tbody>
@@ -58,36 +62,35 @@
     </div>
     <div class="col col-md-6">
       <div class="card" *ngIf="accountObservable">
-        <div class="card-header">Operations</div>
+        <div class="card-header">{{ 'operations.title' | translate }}</div>
         <div class="card-body" *ngIf="authService.roles.includes('ADMIN')">
           <form [formGroup]="operationFromGroup" (ngSubmit)="handleAccountOperation()" method="post">
             <div class="form-check form-check-inline">
               <input class="form-check-input" type="radio" formControlName="operationType" value="DEBIT">
-              <label class="form-check-label">DEBIT:</label>
+              <label class="form-check-label">{{ 'operations.debit' | translate }}:</label>
             </div>
             <div class="form-check form-check-inline">
               <input class="form-check-input" type="radio" formControlName="operationType" value="CREDIT">
-              <label class="form-check-label">CREDIT:</label>
+              <label class="form-check-label">{{ 'operations.credit' | translate }}:</label>
             </div>
             <div class="form-check form-check-inline">
               <input class="form-check-input" type="radio" formControlName="operationType" value="TRANSFER">
-              <label class="form-check-label">TRANSFER:</label>
+              <label class="form-check-label">{{ 'operations.transfer' | translate }}:</label>
             </div>
             <div class="mb-3" *ngIf="operationFromGroup.get('operationType')?.value === 'TRANSFER'">
-              <label class="form-label">Account Destination:</label>
+              <label class="form-label">{{ 'operations.accountDestination' | translate }}:</label>
               <input type="text" formControlName="accountDestination" class="form-control">
             </div>
-
             <div class="mb-3">
-              <label class="form-label">Amount :</label>
+              <label class="form-label">{{ 'operations.amount' | translate }} :</label>
               <input type="text" formControlName="amount" class="form-control">
             </div>
             <div class="mb-3">
-              <label class="form-label">Description :</label>
+              <label class="form-label">{{ 'operations.description' | translate }} :</label>
               <input type="text" formControlName="description" class="form-control">
             </div>
             <div class="d-grid mb-3">
-              <button class="btn btn-success" [disabled]="operationFromGroup.invalid">Save Operation</button>
+              <button class="btn btn-success" [disabled]="operationFromGroup.invalid">{{ 'operations.save' | translate }}</button>
             </div>
           </form>
         </div>

@@ -19,6 +19,7 @@ const routes: Routes = [
       { path: 'new-Custumor', component: NewCustumorComponent, canActivate: [AuthorizationGuard], data: { role: 'ADMIN' } },
       { path: 'CustumorAccount/:id', component: CustumoraccountComponent },
       { path: 'notAuthorized', component: NotAuthorizedComponent },
+
     ]},
 ];
 

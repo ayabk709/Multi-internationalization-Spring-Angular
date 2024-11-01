@@ -1,19 +1,15 @@
-
 <div class="container mt-2">
-  <ng-container *ngIf="customers | async as custumors; else failureOrLoading">
-    <div class="card" *ngIf="custumors">
-
-      <div class="card-header">Customers</div>
+  <ng-container *ngIf="customers | async as customers; else failureOrLoading">
+    <div class="card" *ngIf="customers">
+      <div class="card-header">{{ 'customers.title' | translate }}</div>
       <div class="card-body">
         <div *ngIf="searchFormGroup">
           <form [formGroup]="searchFormGroup" (ngSubmit)="handleSearchCustumers()">
             <div class="input-group">
-              <label for="search" class="input-group-text"> keyword : </label>
+              <label for="search" class="input-group-text">{{ 'customers.actions.search' | translate }}:</label>
               <input type="text" class="form-control" id="search" formControlName="keyword">
-
               <button class="btn btn-info">
-                <i class="bi bi-search">
-                </i>
+                <i class="bi bi-search"></i>
               </button>
             </div>
           </form>
@@ -21,22 +17,26 @@
         <table class="table">
           <thead>
           <tr>
-            <th>ID</th><th>Name</th><th>Email</th>
+            <th>{{ 'customers.table.id' | translate }}</th>
+            <th>{{ 'customers.table.name' | translate }}</th>
+            <th>{{ 'customers.table.email' | translate }}</th>
+            <th>{{ 'customers.actions.delete' | translate }}</th>
+            <th>{{ 'customers.actions.accounts' | translate }}</th>
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let c of custumors">
-            <td>{{c.id}}</td>
-            <td>{{c.name}}</td>
-            <td>{{c.email}}</td>
+          <tr *ngFor="let c of customers">
+            <td>{{ c.id }}</td>
+            <td>{{ c.name }}</td>
+            <td>{{ c.email }}</td>
             <td>
-            <button (click)="handleDeleteCustomer(c)" class="btn btn-danger">
-              <i class = "bi bi-trash"></i>
-            </button></td>
+              <button (click)="handleDeleteCustomer(c)" class="btn btn-danger">
+                <i class="bi bi-trash"></i>
+              </button>
+            </td>
             <td>
-<!--              les comptes en fonciton de custumor-->
               <button (click)="handleCustomerAccounts(c)" class="btn btn-success">
-               Accounts
+                {{ 'customers.actions.accounts' | translate }}
               </button>
             </td>
           </tr>
@@ -48,12 +48,12 @@
   <ng-template #failureOrLoading>
     <ng-container *ngIf="errorMessage; else loading">
       <div class="text-danger">
-        {{errorMessage}}
+        {{ errorMessage }}
       </div>
     </ng-container>
     <ng-template #loading>
       <div class="text-info">
-        Loading...
+        {{ 'customers.loading.message' | translate }}
       </div>
     </ng-template>
   </ng-template>
