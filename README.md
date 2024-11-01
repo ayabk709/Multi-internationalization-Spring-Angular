@@ -1,3 +1,21 @@
+# Banking Application
+
+This is a banking application developed using Spring for the backend and Angular for the frontend. The application includes features such as user authentication, internationalization, and secure banking operations.
+
+## Features
+
+- **User Authentication**: Implemented login functionality with security measures to protect user data.
+- **Internationalization**: The application supports multiple languages using properties files in the backend, allowing users to interact with the application in their preferred language.
+
+## Backend Details
+
+The backend is developed with Spring Boot and includes the following:
+
+- **Properties for Internationalization**: The application uses properties files (e.g., `messages.properties`, `messages_fr.properties`, etc.) to manage text and messages in different languages. This allows the application to dynamically serve content based on the user's language preference.
+  
+- **REST API Endpoint**: An endpoint has been created to fetch localized messages from the backend, which can be linked to the frontend. This endpoint provides the necessary translations based on the user's selected language.
+
+### Example Endpoint
 
 Partie Realisation
 page custumor
