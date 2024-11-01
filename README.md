@@ -48,6 +48,7 @@ The backend is developed with Spring Boot and includes the following:
 
 2. **Language Selection**:
    - Implemented a language selection feature, allowing users to choose their preferred language from a dropdown menu. Upon selection, the Angular application updates the current locale and requests the appropriate messages from the Spring backend.
+![image](https://github.com/user-attachments/assets/faf03975-9e99-445f-ac2a-2f0f145cccac)
 
 
 Partie Realisation
