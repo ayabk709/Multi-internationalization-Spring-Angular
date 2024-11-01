@@ -14,28 +14,40 @@ The backend is developed with Spring Boot and includes the following:
 - **Properties for Internationalization**: The application uses properties files (e.g., `messages.properties`, `messages_fr.properties`, etc.) to manage text and messages in different languages. This allows the application to dynamically serve content based on the user's language preference.
   
 - **REST API Endpoint**: An endpoint has been created to fetch localized messages from the backend, which can be linked to the frontend. This endpoint provides the necessary translations based on the user's selected language.
+- 
+## How i implementeed Internationalization
 
-Backend Implementation (Spring)
-Properties Files:
 
-I created separate properties files for each supported language in the src/main/resources directory. For example:
-messages.properties (default language, e.g., English)
-messages_fr.properties (French)
-messages_es.properties (Spanish)
-Each properties file contains key-value pairs where the key represents a message identifier and the value is the translated message. For example:
-properties
-Copy code
-# messages.properties
-welcome.message=Welcome to our Banking Application
+### Backend Implementation (Spring)
 
-# messages_fr.properties
-welcome.message=Bienvenue dans notre application bancaire
-LocaleResolver:
+1. **Properties Files**:
+   - Created separate properties files for each supported language in the `src/main/resources` directory:
+     - `messages.properties` (default language, e.g., English)
+     - `messages_fr.properties` (French)
+     - `messages_es.properties` (Spanish)
+   - Each properties file contains key-value pairs where the key represents a message identifier and the value is the translated message. 
+     - Example:
+       ```properties
+       # messages.properties
+       welcome.message=Welcome to our Banking Application
+       
+       # messages_fr.properties
+       welcome.message=Bienvenue dans notre application bancaire
+       ```
 
-I configured a LocaleResolver in the Spring application to determine the current locale based on user preferences or request headers. This allows the application to serve the appropriate language based on user settings or browser language.
-REST Endpoints:
+2. **LocaleResolver**:
+   - Configured a `LocaleResolver` in the Spring application to determine the current locale based on user preferences or request headers, enabling the application to serve the appropriate language based on user settings or browser language.
 
-I created REST endpoints to retrieve messages based on the user's locale. For instance, when the frontend requests a specific message, the backend uses the properties files to return the appropriate translated string.
+3. **REST Endpoints**:
+   - Created REST endpoints to retrieve messages based on the user's locale. When the frontend requests a specific message, the backend uses the properties files to return the appropriate translated string.
+
+### Frontend Implementation (Angular)
+
+1. **HTTP Client**:
+   - Utilized the Angular HTTP client to make requests to the backend for localized messages. The frontend dynamically updates the UI with these messages based on the user's selected language.
+
+2. **Language Selection**:
+   - Implemented a language selection feature, allowing users to choose their preferred language from a dropdown menu. Upon selection, the Angular application updates the current locale and requests the appropriate messages from the Spring backend.
 
 
 Partie Realisation
