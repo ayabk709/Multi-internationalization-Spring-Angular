@@ -1,3 +1,6 @@
+> **Note :** Vous trouverez la partie backend de l'application dans un fichier ZIP, ainsi que la base de données.
+
+
 # Banking Application
 
 This is a banking application developed using Spring for the backend and Angular for the frontend. The application includes features such as user authentication, internationalization, and secure banking operations.
