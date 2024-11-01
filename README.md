@@ -15,7 +15,28 @@ The backend is developed with Spring Boot and includes the following:
   
 - **REST API Endpoint**: An endpoint has been created to fetch localized messages from the backend, which can be linked to the frontend. This endpoint provides the necessary translations based on the user's selected language.
 
-### Example Endpoint
+Backend Implementation (Spring)
+Properties Files:
+
+I created separate properties files for each supported language in the src/main/resources directory. For example:
+messages.properties (default language, e.g., English)
+messages_fr.properties (French)
+messages_es.properties (Spanish)
+Each properties file contains key-value pairs where the key represents a message identifier and the value is the translated message. For example:
+properties
+Copy code
+# messages.properties
+welcome.message=Welcome to our Banking Application
+
+# messages_fr.properties
+welcome.message=Bienvenue dans notre application bancaire
+LocaleResolver:
+
+I configured a LocaleResolver in the Spring application to determine the current locale based on user preferences or request headers. This allows the application to serve the appropriate language based on user settings or browser language.
+REST Endpoints:
+
+I created REST endpoints to retrieve messages based on the user's locale. For instance, when the frontend requests a specific message, the backend uses the properties files to return the appropriate translated string.
+
 
 Partie Realisation
 page custumor
